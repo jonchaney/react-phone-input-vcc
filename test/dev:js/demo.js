@@ -112,11 +112,16 @@ class Demo extends React.Component {
           />
           <p>Disabled dropdown and country code</p>
           <PhoneInput
-            onlyCountries={['us']}
-            country='us'
-            placeholder='(702) 123-4567'
-            disableCountryCode
-            disableDropdown
+            regions={['europe']}
+            country='no'
+            inputProps={{
+              label:"Phone Number", 
+              name: "phone",
+              id:"ctid_phone", 
+              isValid: true,
+              autoComplete: "tel",
+              errorMessage: "",
+              }}
           />
           <p>Localization</p>
           <p>Non-editable country code</p>

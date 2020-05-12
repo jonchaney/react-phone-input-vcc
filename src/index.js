@@ -7,6 +7,9 @@ import startsWith from 'lodash.startswith';
 import classNames from 'classnames';
 
 import CountryData from './CountryData.js';
+import { TextInput } from "vcc-ui"
+import { StyleProvider, ThemeProvider } from "vcc-ui";
+import volvo from "vcc-ui/lib/themes/volvo";
 
 class PhoneInput extends React.Component {
   static propTypes = {
@@ -123,7 +126,7 @@ class PhoneInput extends React.Component {
     copyNumbersOnly: true,
     renderStringAsFlag: '',
     autocompleteSearch: false,
-    jumpCursorToEnd: true,
+    jumpCursorToEnd: false,
 
     onEnterKeyPress: () => {},
 
@@ -587,8 +590,8 @@ class PhoneInput extends React.Component {
     const { keys } = this.props;
     const { target: { id } } = e;
 
-    if (id === 'flag-dropdown' && e.which === keys.ENTER && !this.state.showDropdown) return this.handleFlagDropdownClick();
-    if (id === 'phone-form-control' && (e.which === keys.ENTER || e.which === keys.ESC)) return e.target.blur();
+    // if (id === 'flag-dropdown' && e.which === keys.ENTER && !this.state.showDropdown) return this.handleFlagDropdownClick();
+    if (e.which === keys.ENTER || e.which === keys.ESC) return e.target.blur();
 
     if (!this.state.showDropdown || this.props.disabled) return;
     if (id === 'search-box') {
@@ -820,48 +823,24 @@ class PhoneInput extends React.Component {
         className={this.props.containerClass}
         style={this.props.style || this.props.containerStyle}
         onKeyDown={this.handleKeydown}>
-        <input
-          className={inputClasses}
-          id='phone-form-control'
-          style={this.props.inputStyle}
-          onChange={this.handleInput}
-          onClick={this.handleInputClick}
-          onDoubleClick={this.handleDoubleClick}
-          onFocus={this.handleInputFocus}
-          onBlur={this.handleInputBlur}
-          onCopy={this.handleInputCopy}
-          value={formattedNumber}
-          ref={el => this.numberInputRef = el}
-          onKeyDown={this.handleInputKeyDown}
-          placeholder={this.props.placeholder}
-          disabled={this.props.disabled}
-          type='tel'
-          {...this.props.inputProps}
-        />
-
-        <div
-          className={flagViewClasses}
-          id='flag-dropdown'
-          style={this.props.buttonStyle}
-          ref={el => this.dropdownContainerRef = el}
-          tabIndex='0'
-          role='button'
-        >
-          {renderStringAsFlag ?
-          <div className={selectedFlagClasses}>{renderStringAsFlag}</div>
-          :
-          <div
-            onClick={disableDropdown ? undefined : this.handleFlagDropdownClick}
-            className={selectedFlagClasses}
-            title={selectedCountry ? `${selectedCountry.name}: + ${selectedCountry.dialCode}` : ''}
-          >
-            <div className={inputFlagClasses}>
-              {!disableDropdown && <div className={arrowClasses}></div>}
-            </div>
-          </div>}
-
-          {showDropdown && this.getCountryDropdownList()}
-        </div>
+        <StyleProvider>
+          <ThemeProvider theme={volvo}>
+            <TextInput
+              onChange={this.handleInput}
+              onClick={this.handleInputClick}
+              onDoubleClick={this.handleDoubleClick}
+              onFocus={this.handleInputFocus}
+              onBlur={this.handleInputBlur}
+              onCopy={this.handleInputCopy}
+              value={formattedNumber}
+              label={this.props.inputProps.label || ""}
+              ref={el => this.numberInputRef = el}
+              onKeyDown={this.handleInputKeyDown}
+              type='tel'
+              {...this.props.inputProps}
+            />
+          </ThemeProvider>
+        </StyleProvider>
       </div>
     );
   }

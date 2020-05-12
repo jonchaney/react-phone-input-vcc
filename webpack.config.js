@@ -46,8 +46,8 @@ if (TARGET === 'dev:js' || TARGET === 'dev:css') {
     },
     devtool: 'inline-source-map',
     devServer: {
-      publicPath: 'http://localhost:3000/',
-      port: '3000',
+      publicPath: 'http://localhost:3002/',
+      port: '3002',
       host: '0.0.0.0',
       historyApiFallback: true,
       hot: true,
