@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import debounce from "lodash.debounce";
@@ -6,21 +5,9 @@ import memoize from "lodash.memoize";
 import reduce from "lodash.reduce";
 import startsWith from "lodash.startswith";
 import classNames from "classnames";
-
 import CountryData from "./CountryData.js";
-import { TextInput } from "vcc-ui";
-=======
-import React from 'react';
-import PropTypes from 'prop-types';
-import debounce from 'lodash.debounce';
-import memoize from 'lodash.memoize';
-import reduce from 'lodash.reduce';
-import startsWith from 'lodash.startswith';
-import classNames from 'classnames';
 
-import CountryData from './CountryData.js';
-import { TextInput } from "vcc-ui"
->>>>>>> add vcc-ui input
+import { TextInput } from "vcc-ui";
 import { StyleProvider, ThemeProvider } from "vcc-ui";
 import volvo from "vcc-ui/lib/themes/volvo";
 
