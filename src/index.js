@@ -5,8 +5,8 @@ import memoize from "lodash.memoize";
 import reduce from "lodash.reduce";
 import startsWith from "lodash.startswith";
 import classNames from "classnames";
-
 import CountryData from "./CountryData.js";
+
 import { TextInput } from "vcc-ui";
 import { StyleProvider, ThemeProvider } from "vcc-ui";
 import volvo from "vcc-ui/lib/themes/volvo";
